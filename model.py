@@ -128,7 +128,7 @@ def train(path_to_train_csv):
     model.fit(X_train, y_train, verbose=False)
 
     # Сохраняем модель
-    joblib.dump(model, "/data/model/trained_model.pkl")
+    joblib.dump(model, "./data/model/trained_model.pkl")
 
     print("Model has trained")
 
@@ -144,7 +144,7 @@ def predict(path_to_predict_csv):
     X = data_preparation(data_frame)
 
     # Достаем ранее сохраненную модель
-    model = joblib.load("/data/model/trained_model.pkl")
+    model = joblib.load("./data/model/trained_model.pkl")
 
     # Делаем предсказание и сохраняем его
     prediction = model.predict(X)
@@ -153,7 +153,7 @@ def predict(path_to_predict_csv):
     new_data_frame = pd.DataFrame({'PassengerId': data_frame['PassengerId'],'Transported': prediction})
 
     # Сохраняем предсказание в csv
-    new_data_frame.to_csv("/data/results.csv", index=False)
+    new_data_frame.to_csv("./data/results.csv", index=False)
 
     print("prediction saved")
 
